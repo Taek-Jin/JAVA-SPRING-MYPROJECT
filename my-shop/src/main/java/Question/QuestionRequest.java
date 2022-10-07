@@ -4,7 +4,14 @@ public class QuestionRequest {
 	
 	private String title;
     private String content;
+    private int question_no;
     
+	public int getQuestion_no() {
+		return question_no;
+	}
+	public void setQuestion_no(int question_no) {
+		this.question_no = question_no;
+	}
 	public String getTitle() {
 		return title;
 	}

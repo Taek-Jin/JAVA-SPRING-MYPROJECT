@@ -7,6 +7,7 @@
 <meta name="viewport" content="width-device-width", initial-scale="1">
 <link rel="stylesheet" href="../resources/css/shop1.css?a133r">
 <link rel="stylesheet" href="../resources/css/default.css?after">
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 </head>
 <body>
 <div class="home_container_cart">
@@ -155,7 +156,6 @@
 		</div>
 	</div>
 </div>
-<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 <script>
 $(document).ready(function(){
 	setTotalInfo();

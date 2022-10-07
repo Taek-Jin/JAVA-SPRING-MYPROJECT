@@ -16,7 +16,8 @@ public class Question {
 		this.content = content;
 		this.regDate = regDate;
 	}
-	
+	public Question() {
+	}
 	public int getQuestion_no() {
 		return question_no;
 	}

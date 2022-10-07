@@ -18,7 +18,9 @@
 			<!--사이드-->
 	<div class="wrapper">
 		<%@ include file = "../include/left_column.jsp" %>	
-		
+		<input type="hidden" class="individual_productsId_input" value="${product.productsId}">
+		<input type="hidden" class="individual_productsPrice_input" value="${product.productsPrice}">
+		<input type="hidden" class="individual_productsName_input" value="${product.productsName}">
 		<div class="product_container">
 			<section class="product_content">
 				<div class="product_1">
@@ -55,7 +57,7 @@
 						</div>
 						<div class="product_info">
 							<div class="button_set">
-								<a class="btn_buy"  style="cursor:pointer;">바로구매</a>
+								<a class="btn_buy" style="cursor:pointer;">바로구매</a>
 								<a class="btn_cart" style="cursor:pointer;"><span class="material-symbols-outlined">shopping_bag</span></a>
 							</div>
 						</div>
@@ -64,7 +66,15 @@
 						</div>
 					</div>
 				</div>
-					
+			<div class="products_info_8" style="display:none;">
+				<input type="hidden" class="individual_productsId_input" value="${product.productsId}">	
+				<input type="hidden" class="individual_productsPrice_input" value="${product.productsPrice}">	
+				<input type="hidden" class="individual_productsName_input" value="${product.productsName}">
+			</div>
+				
+			<form action="../order/view" method="post" class="order_form" name="orderPageVO">
+			
+			</form>	
 			</section>
 			<footer class="home_foot">
 				<div class="home_foot1">
@@ -123,6 +133,55 @@
 			alert("로그인이 필요합니다.");
 		}
 	}
+
+	
+$(".btn_buy").on("click", function(){
+		
+		let form_contents ='';
+		let orderNumber = 0;
+		let deliveryPrice = 0;
+		$(".products_info_8").each(function(index, element){
+			
+			let productsId = $(element).find(".individual_productsId_input").val();
+			let productsPrice = $(element).find(".individual_productsPrice_input").val();
+			let productsCount = $(".quantity_input").val()	
+			let totalPrice = 0;
+			let productsName = $(element).find(".individual_productsName_input").val();
+					
+			if(totalPrice >= 30000){
+				deliveryPrice = 0;
+			} else if(totalPrice == 0){
+				deliveryPrice = 0;
+			} else {
+				deliveryPrice = 3000;	
+			}
+	
+			totalPrice = productsCount * productsPrice;
+						
+			let productsId_input = "<input name='orders[" + orderNumber + "].productsId' type='hidden' value='" + productsId + "'>";
+			form_contents += productsId_input;
+					
+			let productsPrice_input = "<input name='orders[" + orderNumber + "].productsPrice' type='hidden' value='" + productsPrice + "'>";
+			form_contents += productsPrice_input;
+					
+			let productsCount_input = "<input name='orders[" + orderNumber + "].productsCount' type='hidden' value='" + productsCount + "'>";
+			form_contents += productsCount_input;
+					
+			let totalPrice_input = "<input name='orders[" + orderNumber + "].totalPrice' type='hidden' value='" + totalPrice + "'>";
+			form_contents += totalPrice_input;
+					
+			let productsName_input = "<input name='orders[" + orderNumber + "].productsName' type='hidden' value='" + productsName + "'>";
+			form_contents += productsName_input;
+					
+			let deliveryPrice_input = "<input name='orders[" + orderNumber + "].deliveryPrice' type='hidden' value='" + deliveryPrice + "'>";
+			form_contents += deliveryPrice_input;
+		});				
+	alert(form_contents);
+		
+	$(".order_form").html(form_contents);
+	$(".order_form").method = 'POST';
+	$(".order_form").submit();
+});
 </script>
 </body>
 </html>

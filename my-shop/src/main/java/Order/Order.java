@@ -19,13 +19,13 @@ public class Order {
 	
 	private String orderState;
 	
-	private List<OrderItemVO> orders;	
-	
 	private int deliveryCost;
 	
 	private Date orderDate;
 	
 	private int orderFinalSalePrice;
+	
+	private List<OrderItemVO> orders;	
 
 	public String getOrderId() {
 		return orderId;

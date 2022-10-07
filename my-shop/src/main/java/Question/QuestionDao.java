@@ -50,9 +50,14 @@ public class QuestionDao {
 		return count;
 	}
 	
+	public void delete(Question question) {
+		jdbcTemplate.update("delete from spring5fs.question where question_no = ?",
+			 question.getQuestion_no());
+	}
+	
 	public void update(Question question) {
-		jdbcTemplate.update("update spring5fs.question set title = ?, content = ? where EMAIL = ?",
-				question.getTitle(), question.getContent(), question.getEMAIL());
+		jdbcTemplate.update("update spring5fs.question set title = ?, content = ? where question_no = ?",
+				question.getTitle(), question.getContent(), question.getQuestion_no());
 	}
 	public void updateStatus(Question question) {
 		jdbcTemplate.update("update spring5fs.question set status = ? where question_no = ?",

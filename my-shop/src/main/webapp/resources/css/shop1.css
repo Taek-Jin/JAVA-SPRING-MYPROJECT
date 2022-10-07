@@ -470,8 +470,27 @@ header h1 a { position: absolute; width: 110px; left: 10px; height: 71px; color:
     margin-bottom: 20px;
     width: 1150px;
     font-weight: bold;
-}
 
+}
+.content_container .cart_content .qna_subject_1{
+    padding: 20px 0 20px;
+    border-bottom: #ccc solid 1px;
+    margin-bottom: 20px;
+    width: 1150px;
+    font-weight: bold;
+
+}
+.content_container .cart_content .qna_subject_2{
+    position: absolute;
+    margin-left:600px;
+    width: 200px;
+    font-weight: bold;
+
+}
+.content_container .cart_content .qna_subject_2 button{
+    margin-bottom: 10px;
+
+}
 .question_paging2{
     position:absolute;
     margin: auto;
@@ -824,4 +843,41 @@ header h1 a { position: absolute; width: 110px; left: 10px; height: 71px; color:
 .write_container .btn-primary{
     margin-left: 500px;
     margin-top: 20px;
+}
+
+
+
+.cart_content .qna_content1 .qna_content_subject{
+    height: 50px;
+
+}
+.cart_content .qna_content1 .qna_content_subject2{
+    height: 50px;
+    padding-left: 30px;
+}
+
+.cart_content .qna_content1 .qna_content_content{
+    height: 200px;
+}
+.cart_content .qna_content1 .qna_content_content2{
+    height: 200px;
+    padding-left: 30px;
+}
+.cart_content .qna_content2 .qna_content_subject{
+    height: 50px;
+
+}
+.cart_content .qna_content2 .qna_content_subject2{
+    height: 50px;
+    padding-left: 30px;
+}
+
+.cart_content .qna_content2 .qna_content_content{
+    height: 200px;
+    position: absolute;
+    display: inline-block;
+}
+.cart_content .qna_content2 .qna_content_content2{
+    height: 200px;
+    padding-left: 30px;
 }

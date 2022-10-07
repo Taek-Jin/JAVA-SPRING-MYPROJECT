@@ -1,3 +1,8 @@
+/dist/
+/mappers/
+/message/
+/mybatis-config.xml
+/plugins/
 /Board/
 /Cart/
 /Category/

@@ -197,7 +197,7 @@
 							</tbody>
 						</table>
 						<div class="order_btn_sector">
-							<button class="order_btn" onclick="requestPay()" onmousedown="paymentRecord();" style="cursor:pointer;" >주문하기</button>
+							<button class="order_btn" onclick="requestPay()" onmousedown="paymentRecord()" style="cursor:pointer;" >주문하기</button>
 						</div>
 				</div>	
 			</section>

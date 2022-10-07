@@ -12,7 +12,7 @@
 </head>
 <body>
 <div class="home_container_cart">
-		<%@ include file = "../include/head.jsp" %>
+		<%@ include file = "../include/head.jsp" %> 
 			<!--사이드-->
 	<div class="wrapper_cart">
 		<div class="sidebar_cart">
@@ -54,7 +54,7 @@
 							<c:forEach items="${list}" var="list">
 								<tr>
 									<td class="td_width_2">${list.question_no}</td>
-									<td class="td_width_3"><a style="color: black;" href="<c:url value="/mypage/question?question_no=${list.question_no}"/>">${list.title}</a></td>
+									<td class="td_width_3"><a style="color: black;" href="<c:url value="/mypage/question/content?question_no=${list.question_no}"/>">${list.title}</a></td>
 									<td class="td_width_4">${list.writer}</td>
 									<td class="td_width_4"><tf:formatDateTime value="${list.regDate}" pattern="yyyy-MM-dd" /></td>
 									<c:if test="${list.status > 0}" >
