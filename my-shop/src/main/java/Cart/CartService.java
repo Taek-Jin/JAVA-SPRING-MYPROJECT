@@ -2,6 +2,8 @@ package Cart;
 
 import java.util.List;
 
+import Order.Order;
+
 
 public class CartService {
 	
@@ -37,4 +39,10 @@ public class CartService {
 		
 		cartDao.delete(cart);
 	}
+	public void Cartdelete(Order od) {
+		
+		cartDao.delete(od);
+		
+	}
+
 }

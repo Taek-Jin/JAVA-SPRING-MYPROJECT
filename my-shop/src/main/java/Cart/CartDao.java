@@ -14,6 +14,9 @@ import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 
+import Order.Order;
+import Order.OrderItemVO;
+
 
 public class CartDao {
 
@@ -73,6 +76,13 @@ public class CartDao {
 	public void delete(Cart cart) {
 		jdbcTemplate.update("delete from spring5fs.cart where cartId = ?",
 				cart.getCartId());
+	}
+	public void delete(Order order) {
+		List<OrderItemVO> orderItems = order.getOrders();
+		for(OrderItemVO orderItemVO : orderItems) {
+		jdbcTemplate.update("delete from spring5fs.cart where cartId = ?",
+				orderItemVO.getCartId());
+		}
 	}
 	
 	public Cart checkCart(Cart cart) {

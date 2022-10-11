@@ -7,7 +7,7 @@
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="stylesheet" href="../resources/css/shop1.css?after124">
+<link rel="stylesheet" href="../resources/css/shop1.css?after11224">
 <link rel="stylesheet" href="../resources/css/default.css?after1">
 <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>
 <script type="text/javascript" src="https://stgstdpay.inicis.com/stdjs/INIStdPay.js" charset="UTF-8"></script>
@@ -97,11 +97,18 @@
 								<c:forEach items="${opv}" var="opv">
 									<tr>
 										<td class="cart_info_td" style="display:none;">
+											<input type="hidden" class="individual_id_input" value="${member.id}">
+											<input type="hidden" class="individual_buyerAddr1_input" value="${member.addr1}">
+											<input type="hidden" class="individual_buyerAddr2_input" value="${member.addr2}">
+											<input type="hidden" class="individual_buyerAddr3_input" value="${member.addr3}">
+											<input type="hidden" class="individual_buyerAddr_input" value="${member.addr}">
 											<input type="hidden" class="individual_buyerName_input" value="${authInfo.name}">
+											<input type="hidden" class="individual_cartId_input" value="${opv.cartId}">
 											<input type="hidden" class="individual_productsPrice_input" value="${opv.productsPrice}">
 											<input type="hidden" class="individual_productsCount_input" value="${opv.productsCount}">
 											<input type="hidden" class="individual_totalPrice_input" value="${opv.totalPrice}">
 											<input type="hidden" class="individual_productsId_input" value="${opv.productsId}">
+											<input type="hidden" class="individual_productsName_input" value="${opv.productsName}">
 											<input type="hidden" class="individual_deliveryPrice_input" value="${opv.deliveryPrice}">
 										</td>
 										<td class="td_width_3 productsid_td"><a href="<c:url value="/product/content?productsId=${opv.productsId}" />">${opv.productsName}</a></td>
@@ -201,13 +208,7 @@
 						</div>
 				</div>	
 			</section>
-			<form action="/payment" method="post" class="order_form">
-				<input name="ID" value="${authInfo.id}" type="hidden">
-				
-				<input name="addressName" type="hidden">
-				<input name="memberAddr1" type="hidden">
-				<input name="memberAddr2" type="hidden">
-				<input name="memberAddr3" type="hidden">
+			<form action="payment" method="post" class="order_form" name="order">
 
 			</form>
 		</div>		
@@ -218,12 +219,12 @@ let totalPrice = 0;				// 총 가격
 let totalCount = 0;				// 총 갯수
 let deliveryPrice = 0;			// 배송비
 let finalTotalPrice = 0; 		// 최종 가격(총 가격 + 배송비)	
-let buyerName;
-let buyerPhone;
-let byyerAddr1;
-let byyerAddr2;
-let byyerAddr3;
-let byyerAddr;
+let buyerName ='';
+let buyerPhone ='';
+let buyerAddr1 = '';
+let buyerAddr2 = '';
+let buyerAddr3 = '';
+let buyerAddr = '';
 
 $(document).ready(function(){
 	setTotalInfo();
@@ -241,7 +242,87 @@ if(className == 2){
 	$(".address_input_tbody_2").css('display', '');
 }
 }
+function setOrderInfo(){
+	let form_contents ='';
+	let orderNumber = 0;
+	let deliveryPrice = 0;
+	let orderState = '배송대기';
+	let userId = $(".individual_id_input").val();
+	let totalPrice = $(".individual_totalPrice_input").val();
+	if($(".address_input_radio_1").is(':checked')){
+		buyerName = $(".individual_buyerName_input").val();
+		buyerPhone = $(".individual_buyerPhone_input").val();
+		buyerAddr1 = $(".individual_buyerAddr1_input").val();
+		buyerAddr2 = $(".individual_buyerAddr2_input").val();
+		buyerAddr3 = $(".individual_buyerAddr3_input").val();
+		buyerAddr =	$(".individual_buyerAddr_input").val();
+		
+	}
+	else if($(".address_input_radio_2").is(':checked')){
+		buyerName = $(".new_buyerName_input").val();
+		buyerPhone = $(".new_buyerPhone_input").val();
+		buyerAddr1 = $(".new_buyerAddr1_input").val();
+		buyerAddr2 = $(".new_buyerAddr2_input").val();
+		buyerAddr3 = $(".new_buyerAddr3_input").val();
+		buyerAddr = buyerAddr1 + buyerAddr2 + buyerAddr3
+	}
+	if(totalPrice >= 30000){
+		deliveryPrice = 0;
+	} else if(totalPrice == 0){
+		deliveryPrice = 0;
+	} else {
+		deliveryPrice = 3000;	
+	}
+	
+	$(".cart_info_td").each(function(index, element){
 
+			let productsId = $(element).find(".individual_productsId_input").val();
+			let productsPrice = $(element).find(".individual_productsPrice_input").val();
+			let productsCount = $(element).find(".individual_productsCount_input").val();
+			let productsName = $(element).find(".individual_productsName_input").val();
+			let cartId = $(element).find(".individual_cartId_input").val();
+			
+			
+			
+				
+			let productsId_input = "<input name='orders[" + orderNumber + "].productsId' type='hidden' value='" + productsId + "'>";
+			form_contents += productsId_input;
+			
+			let productsPrice_input = "<input name='orders[" + orderNumber + "].productsPrice' type='hidden' value='" + productsPrice + "'>";
+			form_contents += productsPrice_input;
+			
+			let productsCount_input = "<input name='orders[" + orderNumber + "].productsCount' type='hidden' value='" + productsCount + "'>";
+			form_contents += productsCount_input;
+			
+			let totalPrice_input = "<input name='orders[" + orderNumber + "].totalPrice' type='hidden' value='" + totalPrice + "'>";
+			form_contents += totalPrice_input;
+			
+			let deliveryPrice_input = "<input name='orders[" + orderNumber + "].deliveryPrice' type='hidden' value='" + deliveryPrice + "'>";
+			form_contents += deliveryPrice_input;
+			
+			let productsName_input = "<input name='orders[" + orderNumber + "].productsName' type='hidden' value='" + productsName + "'>";
+			form_contents += productsName_input;
+			
+			let cartId_input = "<input name='orders[" + orderNumber + "].cartId' type='hidden' value='" + cartId + "'>";
+			form_contents += cartId_input;
+			
+			
+			
+			orderNumber += 1;
+		
+	});	
+	form_contents += "<input name='addressName' type='hidden' value='" + buyerName + "'>";
+	form_contents += "<input name='deliveryCost' type='hidden' value='" + deliveryPrice + "'>";
+	form_contents += "<input name='memberAddr1' type='hidden' value='" + buyerAddr1 + "'>";
+	form_contents += "<input name='memberAddr2' type='hidden' value='" + buyerAddr2 + "'>";
+	form_contents += "<input name='memberAddr3' type='hidden' value='" + buyerAddr3 + "'>";
+	form_contents += "<input name='orderState' type='hidden' value='" + orderState + "'>";
+	form_contents += "<input name='id' type='hidden' value='" + userId + "'>";
+	
+	$(".order_form").html(form_contents);
+	$(".order_form").method = 'POST';
+	$(".order_form").submit();
+}
 
 function setTotalInfo(){
 	
@@ -273,7 +354,10 @@ function paymentRecord() {
 	if($(".address_input_radio_1").is(':checked')){
 		let buyerName = $(element).find(".individual_buyerName_input").val();
 		let buyerPhone = $(element).find(".individual_buyerPhone_input").val();
-		let byyerAddr =	$(element).find(".individual_buyerAddr_input").val();
+		let buyerAddr1 = $(element).find(".individual_buyerAddr1_input").val();
+		let buyerAddr2 = $(element).find(".individual_buyerAddr2_input").val();
+		let buyerAddr3 = $(element).find(".individual_buyerAddr3_input").val();
+		let buyerAddr =	$(element).find(".individual_buyerAddr_input").val();
 	}
 	else if($(".address_input_radio_2").is(':checked')){
 		let buyerName = $(element).find(".new_buyerName_input").val();
@@ -317,14 +401,15 @@ $(".order_btn").click(function () {
 			if (rsp.success) {
 				var msg = '결제가 완료되었습니다.';
 				msg += '결제 금액 : ' + rsp.paid_amount;
-				// success.submit();
-				// 결제 성공 시 정보를 넘겨줘야한다면 body에 form을 만든 뒤 위의 코드를 사용하는 방법이 있습니다.
-				// 자세한 설명은 구글링으로 보시는게 좋습니다.
+				alert(msg);
+				setOrderInfo();
+				
 			} else {
 				var msg = '결제에 실패하였습니다.';
 				msg += '에러내용 : ' + rsp.error_msg;
+				alert(msg);
 			}
-			alert(msg);
+			
 		});
 		}
 	});

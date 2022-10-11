@@ -1,15 +1,15 @@
 package Order;
 
-import java.sql.Date;
+import java.time.LocalDateTime;
 import java.util.List;
 
 public class Order {
 	
-	private String orderId;
+	private int orderId;
 	
 	private String addressName;
-	
-	private String ID;
+
+	private Long id;
 	
 	private String memberAddr1;
 	
@@ -19,19 +19,27 @@ public class Order {
 	
 	private String orderState;
 	
-	private int deliveryCost;
+	private String deliveryCost;
 	
-	private Date orderDate;
+	private LocalDateTime orderDate;
 	
 	private int orderFinalSalePrice;
 	
 	private List<OrderItemVO> orders;	
 
-	public String getOrderId() {
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+	
+	public int getOrderId() {
 		return orderId;
 	}
 
-	public void setOrderId(String orderId) {
+	public void setOrderId(int orderId) {
 		this.orderId = orderId;
 	}
 
@@ -43,13 +51,6 @@ public class Order {
 		this.addressName = addressName;
 	}
 
-	public String getID() {
-		return ID;
-	}
-
-	public void setID(String iD) {
-		ID = iD;
-	}
 
 	public String getMemberAddr1() {
 		return memberAddr1;
@@ -90,20 +91,20 @@ public class Order {
 	public void setOrders(List<OrderItemVO> orders) {
 		this.orders = orders;
 	}
-
-	public int getDeliveryCost() {
+	
+	public String getDeliveryCost() {
 		return deliveryCost;
 	}
 
-	public void setDeliveryCost(int deliveryCost) {
+	public void setDeliveryCost(String deliveryCost) {
 		this.deliveryCost = deliveryCost;
 	}
 
-	public Date getOrderDate() {
+	public LocalDateTime getOrderDate() {
 		return orderDate;
 	}
 
-	public void setOrderDate(Date orderDate) {
+	public void setOrderDate(LocalDateTime orderDate) {
 		this.orderDate = orderDate;
 	}
 

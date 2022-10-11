@@ -35,6 +35,11 @@
 							<span class="item">장바구니</span>
 						</a>
 					</li>
+					<li>
+						<a href="<c:url value="/mypage/order" />">
+							<span class="item">주문내역</span>
+						</a>
+					</li>
 				</ul>
 		</div>
 		<div class="content_container">
