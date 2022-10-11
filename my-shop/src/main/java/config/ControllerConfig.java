@@ -11,6 +11,8 @@ import Cart.CartService;
 import Category.CategoryDao;
 import Category.CategoryListService;
 import Login.AuthService;
+import Order.OrderDao;
+import Order.OrderService;
 import Product.ProductDao;
 import Product.ProductListService;
 import Product.ProductWriteService;
@@ -70,7 +72,10 @@ public class ControllerConfig {
 	private QuestionListService questionListSvc;
 	@Autowired
 	private CartService cartSvc;
-	
+	@Autowired
+	private OrderService orderSvc;
+	@Autowired
+	private OrderDao orderDao;
 	
 	@Bean
 	public RegisterController registerController() {
@@ -159,6 +164,7 @@ public class ControllerConfig {
 	@Bean
 	public MypageViewController mypageViewController() {
 		MypageViewController controller = new MypageViewController();
+		controller.setOrderService(orderSvc);
 		controller.setMemberDao(memberDao);
 		return controller;
 	}
@@ -172,7 +178,10 @@ public class ControllerConfig {
 	@Bean
 	public OrderController orderController() {
 		OrderController controller = new OrderController();
+		controller.setOrderDao(orderDao);
+		controller.setOrderService(orderSvc);
 		controller.setMemberDao(memberDao);
+		controller.setCartService(cartSvc);
 		return controller;
 	}
 }

@@ -34,6 +34,11 @@
 							<span class="item">장바구니</span>
 						</a>
 					</li>
+					<li>
+						<a href="<c:url value="/mypage/order" />">
+							<span class="item">주문내역</span>
+						</a>
+					</li>
 				</ul>
 		</div>
 		
@@ -59,6 +64,7 @@
 								<tr>
 									<td class="td_width_2 cart_info_td">
 										<input type="checkbox" class="individual_cart_checkbox input_size_20" checked="checked">
+										<input type="hidden" class="individual_cartId_input" value="${ci.cartId}">
 										<input type="hidden" class="individual_productsId_input" value="${ci.productsId}">
 										<input type="hidden" class="individual_productsPrice_input" value="${ci.productsPrice}">
 										<input type="hidden" class="individual_productsCount_input" value="${ci.productsCount}">
@@ -250,6 +256,7 @@ $(".btn_buy").on("click", function(){
 		
 		if($(element).find(".individual_cart_checkbox").is(":checked") === true){	//체크여부
 			
+			let cartId = $(element).find(".individual_cartId_input").val();
 			let productsId = $(element).find(".individual_productsId_input").val();
 			let productsPrice = $(element).find(".individual_productsPrice_input").val();
 			let productsCount = $(element).find(".individual_productsCount_input").val();
@@ -281,6 +288,9 @@ $(".btn_buy").on("click", function(){
 			
 			let deliveryPrice_input = "<input name='orders[" + orderNumber + "].deliveryPrice' type='hidden' value='" + deliveryPrice + "'>";
 			form_contents += deliveryPrice_input;
+			
+			let cartId_input = "<input name='orders[" + orderNumber + "].cartId' type='hidden' value='" + cartId + "'>";
+			form_contents += cartId_input;
 			
 			orderNumber += 1;
 		}

@@ -4,8 +4,10 @@ public class OrderItemVO {
 	
 	/* 뷰로부터 전달받을 값 */
     private int productsId;
-    
-    private int productsCount;
+    private int cartId;
+    private String orderState;
+
+	private int productsCount;
     
 	/* DB로부터 꺼내올 값 */
     private String productsName;    
@@ -16,10 +18,37 @@ public class OrderItemVO {
 	/* 만들어 낼 값 */
     private int totalPrice;
     
+	private int orderItemId;
+
+	public String getOrderState() {
+		return orderState;
+	}
+
+	public void setOrderState(String orderState) {
+		this.orderState = orderState;
+	}
+	
+    public int getCartId() {
+		return cartId;
+	}
+
+	public void setCartId(int cartId) {
+		this.cartId = cartId;
+	}
+	
 	public int getDeliveryPrice() {
 		return deliveryPrice;
 	}
 
+    public int getOrderItemId() {
+		return orderItemId;
+	}
+
+	public void setOrderItemId(int orderItemId) {
+		this.orderItemId = orderItemId;
+	}
+
+	
 	public void setDeliveryPrice(int deliveryPrice) {
 		this.deliveryPrice = deliveryPrice;
 	}

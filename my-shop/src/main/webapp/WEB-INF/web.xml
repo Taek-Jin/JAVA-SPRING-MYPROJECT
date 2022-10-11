@@ -38,7 +38,7 @@
 				config.HomeConfig
 				config.QuestionConfig
 				config.CartConfig
-				/WEB-INF/spring/appServlet/servlet-context.xml
+				config.OrderConfig
 			</param-value>
 		</init-param>
 		<load-on-startup>1</load-on-startup>
