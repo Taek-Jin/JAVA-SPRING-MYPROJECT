@@ -70,6 +70,24 @@ public class ProductDao {
 						productRowMapper);
 				return results;
 		}
+	public List<Product> selectTop(){
+		List<Product> results =  jdbcTemplate.query(	
+						"select * from spring5fs.products where cateCode > \"101000\" and cateCode < \"102000\" order by regDate desc limit 0, 7",
+						productRowMapper);
+				return results;
+		}
+	public List<Product> selectBottom(){
+		List<Product> results =  jdbcTemplate.query(	
+						"select * from spring5fs.products where cateCode > \"103000\" and cateCode < \"104000\" order by regDate desc limit 0, 7",
+						productRowMapper);
+				return results;
+		}
+	public List<Product> selectOuter(){
+		List<Product> results =  jdbcTemplate.query(	
+						"select * from spring5fs.products where cateCode > \"102000\" and cateCode < \"103000\" order by regDate desc limit 0, 7",
+						productRowMapper);
+				return results;
+		}
 	public void insert(final Product product) {
 		KeyHolder keyHolder = new GeneratedKeyHolder();
 		jdbcTemplate.update(new PreparedStatementCreator() {

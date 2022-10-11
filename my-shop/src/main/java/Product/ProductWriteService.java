@@ -41,7 +41,7 @@ public class ProductWriteService {
 	        String oriImgName = files.getOriginalFilename();
 	        String imgName = "";
 
-	        String projectPath = "C:\\spring5fs\\sp5-chap05\\src\\main\\webapp\\resources\\img";
+	        String projectPath = "C:\\Users\\ASUS FX505G\\git\\JAVA-SPRING-MYPROJECT\\my-shop\\src\\main\\webapp\\resources\\img";
 
 	        UUID uuid = UUID.randomUUID();
 

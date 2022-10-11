@@ -32,10 +32,19 @@ header h1 a { position: absolute; width: 110px; left: 10px; height: 71px; color:
     height: 100%;
     padding: 0;
 }
+.all_category{
+    margin-top: 50px;
+}
 .wrapper .sidebar ul li a{
     display: block;
     padding: 13px 0 13px 15px;
-    border-bottom: 1px solid #ccc;
+    color: black;;
+    font-size: 10px;
+    position: relative;
+}
+.wrapper .sidebar ul .wrapper_li{
+    display: block;
+    padding: 13px 0 13px 15px;
     color: black;;
     font-size: 10px;
     position: relative;
