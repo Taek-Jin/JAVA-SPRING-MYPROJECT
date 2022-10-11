@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -22,7 +23,7 @@ public class HomeController {
 		this.productListService = productListService;
 	}
 	@RequestMapping("/")
-	public String handleStep2(Model model) throws JsonProcessingException {
+	public String handleStep1(Model model) throws JsonProcessingException {
 		
 		
 		List<Product> list = productListService.listPage();
@@ -30,5 +31,35 @@ public class HomeController {
 		model.addAttribute("list", list);
 		
 		return "index";
+	}
+	@GetMapping("/category/top")
+	public String handleStep2(Model model) throws JsonProcessingException {
+		
+		
+		List<Product> list = productListService.listPageTop();
+		
+		model.addAttribute("list", list);
+		
+		return "category/top";
+	}
+	@GetMapping("/category/bottom")
+	public String handleStep3(Model model) throws JsonProcessingException {
+		
+		
+		List<Product> list = productListService.listPageBottom();
+		
+		model.addAttribute("list", list);
+		
+		return "category/bottom";
+	}
+	@GetMapping("/category/outer")
+	public String handleStep4(Model model) throws JsonProcessingException {
+		
+		
+		List<Product> list = productListService.listPageOuter();
+		
+		model.addAttribute("list", list);
+		
+		return "category/outer";
 	}
 }
