@@ -8,7 +8,7 @@
     <ul>
       <li>회원가입, 로그인, 로그아웃</li>
       <li>이메일 저장</li>
-      <li>MyPage(나의 정보, 장바구니, 내 QnA목록)</li>
+      <li>MyPage(나의 정보, 장바구니, 내 QnA목록, 주문)</li>
     </ul>
   </li>
 </ul>
@@ -86,3 +86,10 @@
 <img src="https://user-images.githubusercontent.com/67893213/194259410-236319c9-e4da-4742-96f6-186ddb250025.png">
 <img src="https://user-images.githubusercontent.com/67893213/194259333-cc996088-1830-47c2-ba33-f0b4df684fc0.png">
 <img src="https://user-images.githubusercontent.com/67893213/194260179-b50223ad-250c-4c68-99c6-5eff5e76c0b7.png">
+<ul>
+  <li>주문내역</li>
+    <ul>
+      <li>결제후 주문내역 마이페이지에서 확인 가능
+    </ul>
+</ul>
+<img src="https://user-images.githubusercontent.com/67893213/194979701-08d54723-eb6d-43e2-9cdf-3a591aec18bd.png">
